@@ -59,9 +59,9 @@ const TOKEN_KEY = 'x-jwt';
 			entities: [User, Verification, Restaurant, Category, Dish, Order, OrderItem, Payment]
 		}),
 		GraphQLModule.forRoot({
-			// playground 페이지에 접근할 수 있도록 설정
-			introspection: true,
-			playground: true,
+			// playground 페이지 사용/미사용 할 수 있도록 설정
+			introspection: process.env.NODE_ENV !== 'production',
+			playground: process.env.NODE_ENV !== 'production',
 			// 서버가 WebSocket 기능을 가지도록 함
 			installSubscriptionHandlers: true,
 			// GraphQL schema를 memory에 위치시켜주는 옵션
