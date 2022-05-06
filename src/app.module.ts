@@ -32,9 +32,9 @@ const TOKEN_KEY = 'x-jwt';
 			// false인 경우 해당 module에서 imports해야 사용이 가능함
 			isGlobal: false,
 			envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.test',
-			ignoreEnvFile: process.env.NODE_ENV === 'prod',
+			ignoreEnvFile: process.env.NODE_ENV === 'production',
 			validationSchema: Joi.object({
-				NODE_ENV: Joi.string().valid('dev', 'prod', 'test').required(),
+				NODE_ENV: Joi.string().valid('dev', 'production', 'test').required(),
 				DB_HOST: Joi.string().required(),
 				DB_PORT: Joi.string().required(),
 				DB_USERNAME: Joi.string().required(),
@@ -53,12 +53,15 @@ const TOKEN_KEY = 'x-jwt';
 			username: process.env.DB_USERNAME,
 			password: process.env.DB_PASSWORD,
 			database: process.env.DB_NAME,
-			synchronize: process.env.NODE_ENV !== 'prod',
+			synchronize: process.env.NODE_ENV !== 'production',
 			// logging: process.env.NODE_ENV !== 'prod' && process.env.NODE_ENV !== 'test',
 			logging: false,
 			entities: [User, Verification, Restaurant, Category, Dish, Order, OrderItem, Payment]
 		}),
 		GraphQLModule.forRoot({
+			// playground 페이지에 접근할 수 있도록 설정
+			introspection: true,
+			playground: true,
 			// 서버가 WebSocket 기능을 가지도록 함
 			installSubscriptionHandlers: true,
 			// GraphQL schema를 memory에 위치시켜주는 옵션
