@@ -59,7 +59,8 @@ const TOKEN_KEY = 'x-jwt';
 					database: process.env.DB_NAME,
 				})
 			),
-			synchronize: process.env.NODE_ENV !== 'production',
+			// synchronize: process.env.NODE_ENV !== 'production',
+			synchronize: true,
 			// logging: process.env.NODE_ENV !== 'prod' && process.env.NODE_ENV !== 'test',
 			logging: false,
 			entities: [User, Verification, Restaurant, Category, Dish, Order, OrderItem, Payment]
