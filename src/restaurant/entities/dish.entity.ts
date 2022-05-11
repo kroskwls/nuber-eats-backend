@@ -1,4 +1,4 @@
-import { Field, InputType, Int, ObjectType } from "@nestjs/graphql";
+import { Field, Float, InputType, Int, ObjectType } from "@nestjs/graphql";
 import { IsNumber, IsString } from "class-validator";
 import { CommonEntity } from "src/common/entities/common.entity";
 import { Column, Entity, ManyToOne, RelationId } from "typeorm";
@@ -13,14 +13,13 @@ export class Dish extends CommonEntity {
 	@IsString()
 	name: string;
 
-	@Field(type => Int)
-	@Column()
+	@Field(type => Number)
+	@Column('numeric')
 	@IsNumber()
 	price: number;
 
 	@Field(type => String, { nullable: true })
 	@Column({ nullable: true })
-	@IsString()
 	photo?: string;
 
 	@Field(type => String)
@@ -53,7 +52,7 @@ export class DishOption {
 	@Field(type => [OptionChoice], { nullable: true })
 	choices?: OptionChoice[];
 
-	@Field(type => Int, { nullable: true })
+	@Field(type => Number, { nullable: true })
 	extra?: number;
 }
 
@@ -63,6 +62,6 @@ export class OptionChoice {
 	@Field(type => String)
 	name: string;
 
-	@Field(type => Int, { nullable: true })
+	@Field(type => Number, { nullable: true })
 	extra?: number;
 }
