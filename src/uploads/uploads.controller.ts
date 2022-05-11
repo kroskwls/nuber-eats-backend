@@ -19,7 +19,7 @@ export class UploadsController {
 		});
 
 		try {
-			const objectname = `${Date.now()}-${file.originalname.replace(/ /g, '_')}`;
+			const objectname = `${Date.now()}-${file.originalname.replace(/ /g, '_').replace(/'/g, '')}`;
 			await new AWS.S3().putObject({ 
 				Bucket: BUCKET_NAME,
 				Body: file.buffer,
