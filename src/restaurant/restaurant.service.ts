@@ -20,7 +20,7 @@ import { DeleteDishInput, DeleteDishOutput } from './dtos/delete-dish.dto';
 import { MyRestaurantsOutput } from './dtos/my-restaurants.dto';
 import { MyRestaurantInput, MyRestaurantOutput } from './dtos/my-restaurant.dto';
 
-const rowsInPage = 6;
+const rowsInPage = 9;
 
 @Injectable()
 export class RestaurantService {
