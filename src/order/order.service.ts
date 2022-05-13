@@ -44,16 +44,16 @@ export class OrderService {
 					return { ok: false, error: 'Could not found dish.' };
 				}
 
-				let dishPrice = dish.price;
+				let dishPrice = Number(dish.price);
 				for (const { name, choice } of options) {
 					const dishOption = dish.options.find(dishOption => dishOption.name === name);
-					dishPrice += (dishOption.extra ?? 0);
+					dishPrice += Number(dishOption.extra ?? 0);
 					if (choice) {
 						const dishChoice = dishOption.choices?.find(dishChoice => dishChoice.name === choice);
-						dishPrice += (dishChoice.extra ?? 0);
+						dishPrice += Number(dishChoice.extra ?? 0);
 					}
 				}
-				total += dishPrice;
+				total += Number(dishPrice);
 				const orderItem = await this.orderItemRepository.save(
 					this.orderItemRepository.create({ dish, options })
 				);

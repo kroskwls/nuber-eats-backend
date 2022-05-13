@@ -57,7 +57,7 @@ export class Order extends CommonEntity {
 	items: OrderItem[];
 
 	@Field(type => Number, { nullable: true })
-	@Column({ nullable: true })
+	@Column({ type: 'numeric', nullable: true })
 	@IsNumber()
 	total?: number;
 
